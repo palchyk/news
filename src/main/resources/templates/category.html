@@ -11,7 +11,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h2>News by category</h2>
+        <h2>News by category</h2><h2>  </h2>
        <ul style="list-style-type:none" >
             <li th:each="item : ${news}">                
                 <p><a th:href="@{/{id}(id=${item.id})}" th:text="${item.name}">title</a>
@@ -20,5 +20,6 @@ and open the template in the editor.
                
             </li>
         </ul>
+         <p><a th:href="@{/}" th:text="Back">name</a></p>
     </body>
 </html>
