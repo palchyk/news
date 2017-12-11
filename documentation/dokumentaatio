@@ -1,0 +1,26 @@
+Kuvaus
+
+Uutissivulla voi lisätä kategorian ja uutisen, johon liittyy  aina vähintään 1 kategoria.
+Uutisessa on nimi, ingressi, teksti ja kategoria(t).
+Tyhjä merkkijono ei kelpaa kategoriaksi. Kategoria ei silloin tallennu.
+Uutisen lisäämisessä jokaisessa kentässä on oltava dataa. Muuten se ei tallennu.
+Uutiset voi listata kategorian ja lukijamäärän mukaan.
+Uutissivulla näkyy viisi uusinta uutista.
+Uutista voi käydä lukemassa painamalla uutisen nimeä.
+Uutiset ja kategoriat voi poistaa uutissivulla.
+
+Käyttötapaus
+
+Sivulle päästyä voi lisätä kategorian, jonka jälkeen voi lisätä uutisen.
+Uutisia voi päästä listaamaan tarvittavan parametrin mukaisesti.
+Kaikki uutiset ja kategoriat voi poistaa.
+
+Toteuttamatta jääneet ominaisuudet
+
+-Kirjoittajat
+-Kuvan lisääminen(vain herokussa)
+-Suurten tekstien talletus(vain herokussa)
+-uutisen muokkaaminen
+
+
+

@@ -57,6 +57,13 @@ public class DefaultController {
         model.addAttribute("cats", categoryRepository.findAll());
         return "news";
     }
+    @RequestMapping(value = "/published", method = RequestMethod.GET)
+    public String published(Model model) {
+        Pageable pageable = PageRequest.of(0, Integer.MAX_VALUE, Sort.Direction.DESC, "created");
+        model.addAttribute("news", newRepository.findAll(pageable));
+        model.addAttribute("cats", categoryRepository.findAll());
+        return "news";
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String single(Model model, @PathVariable Long id) {
@@ -82,6 +89,7 @@ public class DefaultController {
     public String byCategory(Model model,@PathVariable Long id) {
         model.addAttribute("news", categoryRepository.findById(id).get().getNews());
         model.addAttribute("name", categoryRepository.findById(id).get());
+        model.addAttribute("cats", categoryRepository.findAll());
         return "category";
     }
     @RequestMapping(value = "/delete")
