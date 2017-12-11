@@ -22,7 +22,7 @@ public class CountService extends HttpServlet{
     @Autowired
     private NewRepository newRepository;
     
-    
+    //laskee lukijamäärän
     public void incrementAndCount(Long id) {       
        newRepository.getOne(id).setRead(newRepository.getOne(id).getRead()+1);
        newRepository.flush();

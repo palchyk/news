@@ -20,7 +20,8 @@ Toteuttamatta jääneet ominaisuudet
 -Kirjoittajat
 -Kuvan lisääminen(vain herokussa)
 -Suurten tekstien talletus(vain herokussa)
--uutisen muokkaaminen
-
+-yksittäisen uutisen muokkaaminen ja poistaminen
+-testit, koodin tyyli ja käyttöliittymän ulkonäkö
+------
 
 

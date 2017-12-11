@@ -18,13 +18,11 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 public class Category extends AbstractPersistable<Long>{
-//     @Id
+
     public String name;
 
     @ManyToMany
-//        (mappedBy = "categories" , fetch = FetchType.EAGER)
-//    )
-    private List<NewClass> news ;// =  new ArrayList<>();
+    private List<NewClass> news ;
     
     public String getName() {
         return name;
@@ -35,9 +33,7 @@ public class Category extends AbstractPersistable<Long>{
     }
 
     public List<NewClass> getNews() {
-//         if (this.news == null) {
-//            this.news = new ArrayList<>();
-//        }
+
          return this.news;
     }
 

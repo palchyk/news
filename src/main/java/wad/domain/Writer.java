@@ -8,13 +8,11 @@ package wad.domain;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
 public class Writer extends AbstractPersistable<Long> {
-   
+   //En valitettavasti ehtinyt toteuttaa tämän käyttöä
     public String name;
     
      @ManyToMany(mappedBy = "writers")

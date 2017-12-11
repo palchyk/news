@@ -23,9 +23,8 @@ public class NewClass extends AbstractPersistable<Long> {
     @OneToOne
     private Image i;
 
-    @ManyToMany 
-        (mappedBy = "news" , fetch = FetchType.EAGER )
-//    @OneToMany
+    @ManyToMany (mappedBy = "news" , fetch = FetchType.EAGER )
+
     private List<Category> categories =  new ArrayList<>();
 
     @ManyToMany
@@ -65,15 +64,7 @@ public class NewClass extends AbstractPersistable<Long> {
     public int read = 0;
 
     public String lead;
-//    public String link;
-
-//    public String getLink() {
-//        return link;
-//    }
-//
-//    public void setLink(String link) {
-//        this.link = link;
-//    }
+//Tämäkään ei kelvannut herokulle
 //    @Column( length = 10000000 )
     public String text;
 

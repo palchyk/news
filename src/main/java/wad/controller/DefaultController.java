@@ -1,6 +1,5 @@
 package wad.controller;
 
-//import java.io.IOException;
 import java.io.IOException;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
@@ -50,6 +49,7 @@ public class DefaultController {
         model.addAttribute("cats", categoryRepository.findAll());
         return "news";
     }
+
     @RequestMapping(value = "/read", method = RequestMethod.GET)
     public String read(Model model) {
         Pageable pageable = PageRequest.of(0, Integer.MAX_VALUE, Sort.Direction.DESC, "read");
@@ -57,6 +57,7 @@ public class DefaultController {
         model.addAttribute("cats", categoryRepository.findAll());
         return "news";
     }
+
     @RequestMapping(value = "/published", method = RequestMethod.GET)
     public String published(Model model) {
         Pageable pageable = PageRequest.of(0, Integer.MAX_VALUE, Sort.Direction.DESC, "created");
@@ -72,42 +73,35 @@ public class DefaultController {
         model.addAttribute("cats", categoryRepository.findAll());
         return "newhtml";
     }
-//    @RequestMapping(value = "/{id}/addCategories", method = RequestMethod.GET)
-//    public String addCategories(Model model, @PathVariable Long id) {
-//        model.addAttribute("onenew",newRepository.findById(id).get());
-//        model.addAttribute("cats", categoryRepository.findAll());
-//
-//        return "addcategory";
-//    }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(Model model) {
         model.addAttribute("cats", categoryRepository.findAll());
         return "add";
     }
+
     @RequestMapping(value = "/category/{id}", method = RequestMethod.GET)
-    public String byCategory(Model model,@PathVariable Long id) {
+    public String byCategory(Model model, @PathVariable Long id) {
         model.addAttribute("news", categoryRepository.findById(id).get().getNews());
         model.addAttribute("name", categoryRepository.findById(id).get());
         model.addAttribute("cats", categoryRepository.findAll());
         return "category";
     }
+
     @RequestMapping(value = "/delete")
     public String delete() {
         categoryRepository.deleteAll();
-         newRepository.deleteAll();
+        newRepository.deleteAll();
         return "redirect:/";
     }
 
     @PostMapping("/add")
-// @Transactional
-    public String post(Model model, @RequestParam String name, @RequestParam String lead, @RequestParam String text
-            ,@RequestParam (required=false)String category
-//            ,@RequestParam String link
-//            ,@RequestParam("file") MultipartFile file
+    public String post(Model model, @RequestParam String name, @RequestParam String lead, @RequestParam String text,
+             @RequestParam(required = false) String category
+    //            ,@RequestParam("file") MultipartFile file     //tämä sen takia että heroku ei hyväksynyt kuvien talletusta
     ) throws IOException {
         model.addAttribute("cats", categoryRepository.findAll());
-        if (!(name.trim().isEmpty())&& !(category==null)  &&  !(lead.trim().isEmpty()) && !(text.trim().isEmpty())) {
+        if (!(name.trim().isEmpty()) && !(category == null) && !(lead.trim().isEmpty()) && !(text.trim().isEmpty())) {
             Date d = new Date();
 
             NewClass n = new NewClass();
@@ -115,29 +109,18 @@ public class DefaultController {
             n.setLead(lead);
             n.setText(text);
             n.setCreated(d);
-            
-//            n.setLink(link);
+
+//Herokulle ei kelvannut kuvan talletus :(
 //            Image i = new Image();
 //            i.setContent(file.getBytes());
 //            Long idi = imageRepository.save(i).getId();
 //
 //            n.setI(i);
-
             NewClass nc = newRepository.save(n);
             newRepository.flush();
-//            Long cid = Long.parseLong(category);
-//            categoryRepository.getOne(cid).addNew(nc);
-//            categoryRepository.flush();
-//            newRepository.getOne(nc.getId()).addCategory(categoryRepository.getOne(cid));
-//            System.out.println(categoryRepository.getOne(cid).getNews().size());
-            
-            Integer in= 1;
-//            System.out.println(newRepository.count());
-//            System.out.println(categoryRepository.getOne(in.longValue()).getNews().size());
-//            System.out.println(category);
-            String[] s = category.split(",");           
-           
-           
+            //Kategorian talletus ei ollutkaan niin helppoa kuin luulin
+            String[] s = category.split(",");
+
             Long[] l = new Long[s.length];
             for (int j = 0; j < s.length; j++) {
                 l[j] = Long.valueOf(s[j]);
@@ -148,22 +131,9 @@ public class DefaultController {
                 categoryRepository.getOne(l[k]).addNew(nc);
                 newRepository.flush();
                 newRepository.getOne(nc.getId()).addCategory(categoryRepository.getOne(l[k]));
-                
-//                newRepository.flush();
-//                categoryRepository.flush();
-//                categoryRepository.getOne(l[k]).addNew(nc);
-//                categoryRepository.flush();
+
             }
-            
-//            System.out.println(categoryRepository.getOne(in.longValue()).getNews().size());
-            
-            
-            
-//            Category c = 
-//                    new Category();
-//            c.setName(category);
-//            c = categoryRepository.save(c);
-//                    .addCategory(c);
+
         }
 
         return "redirect:/";
@@ -172,14 +142,16 @@ public class DefaultController {
     @PostMapping("/addCategory")
 
     public String addCategory(@RequestParam String category) {
-         if (!(category.trim().isEmpty())){
-        Category c = new Category();
-        c.setName(category);
-        categoryRepository.save(c);}
+        if (!(category.trim().isEmpty())) {
+            Category c = new Category();
+            c.setName(category);
+            categoryRepository.save(c);
+        }
 
         return "redirect:/";
     }
 
+    //Tämä metodi ei ole käytettävissä koska kuvaa ei voinut tallentaa herokussa haluamallani tavalla
     @GetMapping(path = "/news/{id}/content", produces = "image/jpg")
     @ResponseBody
     @Transactional
