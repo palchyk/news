@@ -76,6 +76,12 @@ public class DefaultController {
         model.addAttribute("news", categoryRepository.findById(id).get().getNews());
         return "category";
     }
+    @RequestMapping(value = "/delete")
+    public String delete() {
+        categoryRepository.deleteAll();
+         newRepository.deleteAll();
+        return "redirect:/";
+    }
 
     @PostMapping("/add")
 // @Transactional
@@ -126,6 +132,7 @@ public class DefaultController {
                 categoryRepository.getOne(l[k]).addNew(nc);
                 newRepository.flush();
                 newRepository.getOne(nc.getId()).addCategory(categoryRepository.getOne(l[k]));
+                
 //                newRepository.flush();
 //                categoryRepository.flush();
 //                categoryRepository.getOne(l[k]).addNew(nc);
@@ -149,9 +156,10 @@ public class DefaultController {
     @PostMapping("/addCategory")
 
     public String addCategory(@RequestParam String category) {
+         if (!(category.trim().isEmpty())){
         Category c = new Category();
         c.setName(category);
-        categoryRepository.save(c);
+        categoryRepository.save(c);}
 
         return "redirect:/";
     }

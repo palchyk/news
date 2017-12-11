@@ -23,8 +23,8 @@ public class NewClass extends AbstractPersistable<Long> {
     @OneToOne
     private Image i;
 
-    @ManyToMany (mappedBy = "news" , fetch = FetchType.EAGER
-    )
+    @ManyToMany 
+        (mappedBy = "news" , fetch = FetchType.EAGER )
 //    @OneToMany
     private List<Category> categories =  new ArrayList<>();
 

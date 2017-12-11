@@ -22,7 +22,7 @@ public class Category extends AbstractPersistable<Long>{
     public String name;
 
     @ManyToMany
-//        (mappedBy = "categories" , fetch = FetchType.EAGER
+//        (mappedBy = "categories" , fetch = FetchType.EAGER)
 //    )
     private List<NewClass> news ;// =  new ArrayList<>();
     
