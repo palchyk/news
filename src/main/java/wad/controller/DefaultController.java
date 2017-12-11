@@ -101,7 +101,8 @@ public class DefaultController {
     //            ,@RequestParam("file") MultipartFile file     //tämä sen takia että heroku ei hyväksynyt kuvien talletusta
     ) throws IOException {
         model.addAttribute("cats", categoryRepository.findAll());
-        if (!(name.trim().isEmpty()) && !(category == null) && !(lead.trim().isEmpty()) && !(text.trim().isEmpty())) {
+        if (!(name.trim().isEmpty()) && !(category == null) && !(lead.trim().isEmpty()) && !(text.trim().isEmpty())
+                && name.length()<30 && text.length()<250 && lead.length()<250) {
             Date d = new Date();
 
             NewClass n = new NewClass();
