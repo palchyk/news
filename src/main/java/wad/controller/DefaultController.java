@@ -50,12 +50,19 @@ public class DefaultController {
         model.addAttribute("cats", categoryRepository.findAll());
         return "news";
     }
+    @RequestMapping(value = "/read", method = RequestMethod.GET)
+    public String read(Model model) {
+        Pageable pageable = PageRequest.of(0, Integer.MAX_VALUE, Sort.Direction.DESC, "read");
+        model.addAttribute("news", newRepository.findAll(pageable));
+        model.addAttribute("cats", categoryRepository.findAll());
+        return "news";
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String single(Model model, @PathVariable Long id) {
         countService.incrementAndCount(id);
         model.addAttribute("news", newRepository.findById(id).get());
-
+        model.addAttribute("cats", categoryRepository.findAll());
         return "newhtml";
     }
 //    @RequestMapping(value = "/{id}/addCategories", method = RequestMethod.GET)
@@ -74,6 +81,7 @@ public class DefaultController {
     @RequestMapping(value = "/category/{id}", method = RequestMethod.GET)
     public String byCategory(Model model,@PathVariable Long id) {
         model.addAttribute("news", categoryRepository.findById(id).get().getNews());
+        model.addAttribute("name", categoryRepository.findById(id).get());
         return "category";
     }
     @RequestMapping(value = "/delete")
@@ -118,7 +126,7 @@ public class DefaultController {
             Integer in= 1;
 //            System.out.println(newRepository.count());
 //            System.out.println(categoryRepository.getOne(in.longValue()).getNews().size());
-            System.out.println(category);
+//            System.out.println(category);
             String[] s = category.split(",");           
            
            
@@ -139,7 +147,7 @@ public class DefaultController {
 //                categoryRepository.flush();
             }
             
-            System.out.println(categoryRepository.getOne(in.longValue()).getNews().size());
+//            System.out.println(categoryRepository.getOne(in.longValue()).getNews().size());
             
             
             
