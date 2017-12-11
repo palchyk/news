@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -22,7 +23,8 @@ public class NewClass extends AbstractPersistable<Long> {
     @OneToOne
     private Image i;
 
-    @ManyToMany
+    @ManyToMany (mappedBy = "news" , fetch = FetchType.EAGER
+    )
 //    @OneToMany
     private List<Category> categories =  new ArrayList<>();
 

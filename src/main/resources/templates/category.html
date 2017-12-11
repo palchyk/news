@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>News by category</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h2>News by category</h2>
+       <ul style="list-style-type:none" >
+            <li th:each="item : ${news}">                
+                <p><a th:href="@{/{id}(id=${item.id})}" th:text="${item.name}">title</a>
+                Created: <span  th:utext="${item.created}">content</span>
+                Read times: <span  th:utext="${item.read}">content</span></p>
+               
+            </li>
+        </ul>
+    </body>
+</html>

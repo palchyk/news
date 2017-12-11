@@ -71,16 +71,21 @@ public class DefaultController {
         model.addAttribute("cats", categoryRepository.findAll());
         return "add";
     }
+    @RequestMapping(value = "/category/{id}", method = RequestMethod.GET)
+    public String byCategory(Model model,@PathVariable Long id) {
+        model.addAttribute("news", categoryRepository.findById(id).get().getNews());
+        return "category";
+    }
 
     @PostMapping("/add")
 // @Transactional
     public String post(Model model, @RequestParam String name, @RequestParam String lead, @RequestParam String text
-            ,@RequestParam String category
+            ,@RequestParam (required=false)String category
 //            ,@RequestParam String link
 //            ,@RequestParam("file") MultipartFile file
     ) throws IOException {
         model.addAttribute("cats", categoryRepository.findAll());
-        if (!name.trim().isEmpty()) {
+        if (!(name.trim().isEmpty())&& !(category==null)  &&  !(lead.trim().isEmpty()) && !(text.trim().isEmpty())) {
             Date d = new Date();
 
             NewClass n = new NewClass();
