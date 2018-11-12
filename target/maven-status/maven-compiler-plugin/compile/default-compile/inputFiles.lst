@@ -1,0 +1,11 @@
+/home/y50u/news/src/main/java/wad/NewsApplication.java
+/home/y50u/news/src/main/java/wad/controller/CountService.java
+/home/y50u/news/src/main/java/wad/repository/NewRepository.java
+/home/y50u/news/src/main/java/wad/domain/Writer.java
+/home/y50u/news/src/main/java/wad/domain/Category.java
+/home/y50u/news/src/main/java/wad/repository/CategoryRepository.java
+/home/y50u/news/src/main/java/wad/controller/DefaultController.java
+/home/y50u/news/src/main/java/wad/domain/Image.java
+/home/y50u/news/src/main/java/wad/repository/WriterRepository.java
+/home/y50u/news/src/main/java/wad/repository/ImageRepository.java
+/home/y50u/news/src/main/java/wad/domain/NewClass.java

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    </head>
+
+    <a th:href="@{/read}" th:text="SortByReadTimes   ">name</a>  
+    <a th:href="@{/published}" th:text="SortByPublishingTime   ">name</a> 
+    <a th:href="@{/}" th:text="Main">name</a>     
+    <ul style="list-style-type:none" >
+        Categories:
+        <li th:each="item : ${cats}">                
+            <a th:href="@{/category/{id}(id=${item.id})}" th:text="${item.name}">title</a>
+
+
+        </li>
+    </ul>
+
+
+
+    <style> 
+        h3.test {
+            width: 40em; 
+            border: 1px solid #000000;
+            word-wrap: break-word;
+        }
+    </style>
+
+    <body>
+        <h1 th:text="${news.name}">Item name</h1>
+        <img th:src="@{/news/{id}/content(id=${news.id})}"/>
+
+        <h3 class="test" th:text="${news.text}">Item type</h3>
+        Read times: <span  th:utext="${news.read}">content</span>
+        <p></p>
+        Created: <span  th:utext="${news.created}">content</span>
+    </body>
+
+
+    <p><a th:href="@{/}" th:text="Back">name</a></p>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <a th:href="@{/read}" th:text="SortByReadTimes   ">name</a>   
+        <a th:href="@{/published}" th:text="SortByPublishingTime   ">name</a> 
+        <a th:href="@{/}" th:text="Main">name</a>  
+        <ul style="list-style-type:none" >
+            Categories:
+            <li th:each="item : ${cats}">                
+                <a th:href="@{/category/{id}(id=${item.id})}" th:text="${item.name}">title</a>
+
+
+            </li>
+        </ul>
+        <h4>News by category</h4><span  th:utext="${name.name}">content</span>:
+
+        <ul style="list-style-type:none" >
+            <li th:each="item : ${news}">                
+                <p><a th:href="@{/{id}(id=${item.id})}" th:text="${item.name}">title</a>
+                    Created: <span  th:utext="${item.created}">content</span>
+                    Read times: <span  th:utext="${item.read}">content</span></p>
+
+            </li>
+        </ul>
+        <p><a th:href="@{/}" th:text="Back">name</a></p>
+    </body>
+</html>
